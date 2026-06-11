@@ -14,6 +14,7 @@ from src.config import (
     DEEPSEEK_API_KEY,
     DEEPSEEK_BASE_URL,
     DEEPSEEK_MODEL,
+    DEEPSEEK_THINKING,
     BAILIAN_API_KEY,
     BAILIAN_BASE_URL,
     BAILIAN_MODEL,
@@ -60,6 +61,7 @@ class LLM:
         provider: Optional[str] = None,
         model: Optional[str] = None,
         temperature: Optional[float] = None,
+        thinking_mode: Optional[bool] = None,
         max_retries: int = 2,
     ) -> str:
         """
@@ -70,6 +72,7 @@ class LLM:
             provider: Override provider (default: self.provider).
             model: Override model name.
             temperature: Override temperature.
+            thinking_mode: Enable thinking/reasoning mode (DeepSeek only).
             max_retries: Max retries on transient errors.
 
         Returns:
@@ -86,15 +89,19 @@ class LLM:
 
         client = self._get_client(provider)
         temp = temperature if temperature is not None else self.temperature
+        thinking = thinking_mode if thinking_mode is not None else DEEPSEEK_THINKING
 
         last_error: Exception | None = None
         for attempt in range(1 + max_retries):
             try:
-                response = client.chat.completions.create(
+                kwargs = dict(
                     model=model_name,
                     messages=[{"role": "user", "content": prompt}],
                     temperature=temp,
                 )
+                if thinking and provider == "deepseek":
+                    kwargs["extra_body"] = {"thinking": True}
+                response = client.chat.completions.create(**kwargs)
                 return response.choices[0].message.content
 
             except RateLimitError as e:

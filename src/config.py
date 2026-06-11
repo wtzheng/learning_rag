@@ -40,7 +40,8 @@ LLM_TEMPERATURE = 0.3
 
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
-DEEPSEEK_MODEL = "deepseek-chat"
+DEEPSEEK_MODEL = "deepseek-v4-flash"
+DEEPSEEK_THINKING = False  # True = thinking/reasoning mode
 
 BAILIAN_API_KEY = os.getenv("BAILIAN_API_KEY", "")
 BAILIAN_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"

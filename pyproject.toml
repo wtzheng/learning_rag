@@ -1,0 +1,24 @@
+[project]
+name = "learning-rag"
+version = "0.1.0"
+description = "A learning RAG knowledge base with LlamaIndex + Chroma + BGE-M3"
+requires-python = ">=3.9"
+
+dependencies = [
+    "llama-index>=0.12.0",
+    "llama-index-embeddings-huggingface>=0.5.0",
+    "llama-index-vector-stores-chroma>=0.4.0",
+    "llama-index-llms-openai>=0.3.0",
+    "chromadb>=0.6.0",
+    "sentence-transformers>=3.4.0",
+    "rank-bm25>=0.2.2",
+    "jieba>=0.42.1",
+    "PyMuPDF>=1.25.0",
+    "python-dotenv>=1.0.0",
+    "openai>=1.68.0",
+    "ipykernel>=6.29.0",
+    "jupyter>=1.1.0",
+]
+
+[tool.packaging]
+auto-build = false

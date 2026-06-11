@@ -1,0 +1,13 @@
+注意力机制（Attention Mechanism）是深度学习中的一项重要技术。它允许模型在处理输入数据时，动态地关注最相关的部分，而不是平等对待所有信息。
+
+Transformer 模型由 Vaswani 等人于 2017 年提出，完全基于注意力机制，摒弃了传统的 RNN/CNN 结构。其核心创新包括：
+1. 自注意力机制（Self-Attention）：每个位置都能关注序列中的所有其他位置
+2. 多头注意力（Multi-Head Attention, MHA）：从多个表示子空间学习信息
+3. 位置编码（Positional Encoding）：为序列中的每个位置添加位置信息
+
+前馈神经网络（Feed-Forward Network, FFN）是 Transformer 中的另一个重要组件。每个 Transformer 块包含一个自注意力层和一个前馈网络层。
+
+与传统的 RNN 相比，Transformer 的优势在于：
+- 并行计算：所有位置可以同时计算，训练速度更快
+- 长距离依赖：注意力机制可以直接建模任意两个位置的关系
+- 可解释性：注意力权重可以可视化，帮助理解模型的决策过程

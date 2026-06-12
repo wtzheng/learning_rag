@@ -38,4 +38,7 @@ class EmbeddingModel:
     @property
     def dim(self) -> int:
         self._load()
+        # sentence-transformers >=4.0 renamed this method
+        if hasattr(self._model, "get_embedding_dimension"):
+            return self._model.get_embedding_dimension()
         return self._model.get_sentence_embedding_dimension()

@@ -100,7 +100,7 @@ class LLM:
                     temperature=temp,
                 )
                 if thinking and provider == "deepseek":
-                    kwargs["extra_body"] = {"thinking": True}
+                    kwargs["extra_body"] = {"thinking": {"type": "enabled"}}
                 response = client.chat.completions.create(**kwargs)
                 return response.choices[0].message.content
 
